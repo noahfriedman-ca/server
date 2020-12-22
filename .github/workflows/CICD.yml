@@ -31,7 +31,7 @@ jobs:
   build:
     name: Build executable
     runs-on: ubuntu-latest
-    if: contains contains(github.ref, 'refs/tags') || (!contains(github.event.head_commit.message, '[skip ci/cd]') && !contains(github.event.head_commit.message, '[skip build]') && !contains(github.event.head_commit.message, '[skip all]'))
+    if: contains(github.ref, 'refs/tags') || (!contains(github.event.head_commit.message, '[skip ci/cd]') && !contains(github.event.head_commit.message, '[skip build]') && !contains(github.event.head_commit.message, '[skip all]'))
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
