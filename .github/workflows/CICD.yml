@@ -50,7 +50,7 @@ jobs:
           path: ~/go/pkg/mod
           key: ${{ hashFiles('go.sum') }}
       - name: Build executable
-        run: go build -o server main.go
+        run: go build .
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
