@@ -49,6 +49,9 @@ jobs:
         run: go build -o server main.go
       - name: Upload artifact
         uses: actions/upload-artifact@v2
+        with:
+          name: server
+          path: ./server
 
   deploy:
     name: Deploy via SSH
