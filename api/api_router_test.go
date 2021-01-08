@@ -1,6 +1,7 @@
 package api_test
 
 import (
+	"github.com/gorilla/mux"
 	"github.com/noahfriedman-ca/server/api"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -13,7 +14,7 @@ var _ = Describe("the API router", func() {
 	var (
 		ms          *httptest.Server
 		getResponse = func(uri string) string {
-			if r, e := http.Get(ms.URL + "/api/list-available"); e != nil {
+			if r, e := http.Get(ms.URL + uri); e != nil {
 				GinkgoT().Error(e)
 			} else {
 				if b, e := ioutil.ReadAll(r.Body); e != nil {
@@ -27,7 +28,9 @@ var _ = Describe("the API router", func() {
 		}
 	)
 	BeforeEach(func() {
-		ms = httptest.NewServer(api.Router())
+		r := mux.NewRouter()
+		api.Subrouter(r)
+		ms = httptest.NewServer(r)
 	})
 
 	It("should successfully call the API function when it exists", func() {
@@ -39,6 +42,14 @@ var _ = Describe("the API router", func() {
 		r := getResponse("/api/nonexistent-function")
 		Expect(r).NotTo(ContainSubstring("404 page not found"))
 		Expect(r).To(ContainSubstring("API function does not exist"))
+	})
+
+	Describe("the listAvailable function", func() {
+		It("should not generate an error", func() {
+			r := getResponse("/api/list-available")
+			Expect(r).NotTo(ContainSubstring("404 page not found"))
+			Expect(r).NotTo(ContainSubstring("ERROR"))
+		})
 	})
 
 	AfterEach(func() {
