@@ -34,7 +34,7 @@ var _ = Describe("the API router", func() {
 	})
 
 	It("should successfully call the API function when it exists", func() {
-		r := getResponse("/api/list-available")
+		r := getResponse("/api/")
 		Expect(r).NotTo(ContainSubstring("404 page not found"))
 		Expect(r).NotTo(ContainSubstring("API function does not exist"))
 	})
@@ -46,7 +46,7 @@ var _ = Describe("the API router", func() {
 
 	Describe("the listAvailable function", func() {
 		It("should not generate an error", func() {
-			r := getResponse("/api/list-available")
+			r := getResponse("/api/")
 			Expect(r).NotTo(ContainSubstring("404 page not found"))
 			Expect(r).NotTo(ContainSubstring("ERROR"))
 		})
