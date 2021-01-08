@@ -5,6 +5,7 @@ on:
       - "**.go"
       - go.mod
       - go.sum
+      - sitemap.xml
       - .github/workflows/CICD.yml
   pull_request:
     branches: [master]
@@ -76,3 +77,16 @@ jobs:
           scp server ubuntu@noahfriedman.ca:~/
           ssh ubuntu@noahfriedman.ca "sudo systemctl start unit"
 
+  sitemap:
+    name: Deploy sitemap.xml via SSH
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Deploy via SSH
+        run: |
+          eval `ssh-agent`
+          mkdir ~/.ssh
+          ssh-keyscan -H noahfriedman.ca >> ~/.ssh/known_hosts
+          ssh-add - <<< "${{ secrets.SSH_KEY }}"
+          scp sitemap.xml ubuntu@noahfriedman.ca:~/
