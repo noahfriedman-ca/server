@@ -1,10 +1,5 @@
 # CHANGELOG
 
-### unreleased
-- Add [`api`](https://github.com/noahfriedman-ca/server/blob/v1.2.0/api) package
-- Add [API router](https://github.com/noahfriedman-ca/server/blob/v1.2.0/api/api.go#L26)
-- Add [`ListAvailable`](https://github.com/noahfriedman-ca/server/blob/v1.2.0/api/api.go#L45) API function
-
 ### 1.1.1
 - Change [LICENSE](https://github.com/noahfriedman-ca/server/blob/v1.1.1/LICENSE) from MPL v2.0 to AGPL v3.0
 
