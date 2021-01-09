@@ -18,7 +18,6 @@ func Router() *mux.Router {
 		http.StripPrefix(r.URL.Path, http.FileServer(http.Dir("."+r.URL.Path+"build/"))).ServeHTTP(w, r)
 	})
 	r.Path("/LICENSE").HandlerFunc(serveFile)
-	r.Path("/sitemap.xml").HandlerFunc(serveFile)
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("./static/build/"))))
 
 	return r
