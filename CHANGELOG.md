@@ -4,7 +4,6 @@
 - Add [`api`](https://github.com/noahfriedman-ca/server/blob/v1.2.0/api) package
 - Add [API router](https://github.com/noahfriedman-ca/server/blob/v1.2.0/api/api.go#L26)
 - Add [`ListAvailable`](https://github.com/noahfriedman-ca/server/blob/v1.2.0/api/api.go#L45) API function
-- Remove `sitemap.xml` and routes to it
 
 ### 1.1.0
 - Add [`LICENSE` route](https://github.com/noahfriedman-ca/server/blob/v1.1.0/router.go#L18)
