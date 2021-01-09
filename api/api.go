@@ -101,6 +101,7 @@ func ListAvailable(w http.ResponseWriter, _ *http.Request) {
 				return
 			} else {
 				_, _ = w.Write(b)
+				w.Header().Set("Content-Type", "application/json")
 			}
 		}
 	}
