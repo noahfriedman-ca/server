@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### 1.1.1
+- Change [LICENSE](https://github.com/noahfriedman-ca/server/blob/v1.1.1/LICENSE) from MPL v2.0 to AGPL v3.0
+
 ### 1.1.0
 - Add [`LICENSE` route](https://github.com/noahfriedman-ca/server/blob/v1.1.0/router.go#L18)
 
