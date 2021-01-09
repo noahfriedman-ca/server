@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/noahfriedman-ca/server/api"
 	"net/http"
 )
 
@@ -12,7 +11,6 @@ func serveFile(w http.ResponseWriter, r *http.Request) {
 
 func Router() *mux.Router {
 	r := mux.NewRouter()
-	api.Subrouter(r)
 
 	r.PathPrefix("/projects/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.StripPrefix(r.URL.Path, http.FileServer(http.Dir("."+r.URL.Path+"build/"))).ServeHTTP(w, r)
