@@ -90,5 +90,6 @@ var _ = Describe("the router",
 			Entry("the 'LICENSE' route", "/LICENSE", "./LICENSE"),
 			Entry("the 'sitemap.xml' route", "/sitemap.xml", "./sitemap.xml"),
 			Entry("the '/projects/test/' route", "/projects/test/", "./projects/test/build/index.html"),
+			Entry("the '/projects/test/resource.txt' route", "/projects/test/resource.txt", "./projects/test/build/resource.txt"),
 		)
 	})
