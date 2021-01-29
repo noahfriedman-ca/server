@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### 1.1.2
+- Update [project routing](https://github.com/noahfriedman-ca/server/blob/v1.1.2/router.go#L18)
+
 ### 1.1.1
 - Change [LICENSE](https://github.com/noahfriedman-ca/server/blob/v1.1.1/LICENSE) from MPL v2.0 to AGPL v3.0
 
