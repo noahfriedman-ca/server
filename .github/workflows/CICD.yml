@@ -28,7 +28,11 @@ jobs:
         id: cache
         with:
           path: ~/go/pkg/mod
-          key: ${{ hashFiles('go.sum') }}
+          key: server-${{ hashFiles('go.sum') }}
+          restore-keys: server-
+      - name: Install mssing dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: go mod download
       - name: Run tests
         run: go test -v ./... -ginkgo.v
 
@@ -49,7 +53,11 @@ jobs:
         id: cache
         with:
           path: ~/go/pkg/mod
-          key: ${{ hashFiles('go.sum') }}
+          key: server-${{ hashFiles('go.sum') }}
+          restore-keys: server-
+      - name: Install mssing dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: go mod download
       - name: Build executable
         run: go build
       - name: Upload artifact
