@@ -16,7 +16,7 @@ func Router() *mux.Router {
 	r := mux.NewRouter()
 
 	r.PathPrefix("/projects/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		re := regexp.MustCompile("^/projects/([^/]*)/(.*)$")
+		re := regexp.MustCompile("^/projects/([^/]*)(/.*)?$")
 		m := re.FindStringSubmatch(r.URL.Path)
 
 		if m[2] == "" {
