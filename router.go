@@ -17,7 +17,12 @@ func Router() *mux.Router {
 		v := mux.Vars(r)
 
 		prefix := fmt.Sprintf("/%s/%s/", v["dev"], v["project"])
-		http.StripPrefix(prefix, http.FileServer(http.Dir("."+prefix+"build/"))).ServeHTTP(w, r)
+
+		if r.URL.Path+"/" == prefix {
+			http.ServeFile(w, r, "."+prefix+"build/index.html")
+		} else {
+			http.StripPrefix(prefix, http.FileServer(http.Dir("."+prefix+"build/"))).ServeHTTP(w, r)
+		}
 	})
 	r.Path("/sitemap.xml").HandlerFunc(serveFile)
 	r.Path("/LICENSE").HandlerFunc(serveFile)
