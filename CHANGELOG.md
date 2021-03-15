@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.2.0
+- Completely rewrite [project routing](https://github.com/noahfriedman-ca/server/blob/v1.2.0/router.go)
+- [Route a `dev` folder](https://github.com/noahfriedman-ca/server/blob/v1.2.0/router.go#L16) alongside a `projects` folder
+
 ### 1.1.2
 - Update [project routing](https://github.com/noahfriedman-ca/server/blob/v1.1.2/router.go#L18)
 
