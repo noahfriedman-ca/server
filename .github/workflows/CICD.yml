@@ -15,7 +15,7 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     container: ghcr.io/noahfriedman-ca/cicd-deps
-    if: contains(github.ref, 'refs/tags') || (!contains(github.event.head_commit.message, '[skip ci/cd]') && !contains(github.event.head_commit.message, '[skip all]'))
+    if: contains(github.ref, 'refs/tags') || (!contains(github.event.head_commit.message, '[skip ci]')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -40,7 +40,7 @@ jobs:
     name: Build executable
     runs-on: ubuntu-latest
     container: ghcr.io/noahfriedman-ca/cicd-deps
-    if: contains(github.ref, 'refs/tags') || (!contains(github.event.head_commit.message, '[skip ci/cd]') && !contains(github.event.head_commit.message, '[skip build]') && !contains(github.event.head_commit.message, '[skip all]'))
+    if: contains(github.ref, 'refs/tags')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
