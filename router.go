@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
-	"regexp"
-	"strings"
 )
 
 func serveFile(w http.ResponseWriter, r *http.Request) {
@@ -15,20 +13,11 @@ func serveFile(w http.ResponseWriter, r *http.Request) {
 func Router() *mux.Router {
 	r := mux.NewRouter()
 
-	r.PathPrefix("/projects/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		re := regexp.MustCompile("^/projects/([^/]*)(/.*)?$")
-		m := re.FindStringSubmatch(r.URL.Path)
+	r.PathPrefix("/{dev:dev|projects}/{project}").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		v := mux.Vars(r)
 
-		if m[2] == "" {
-			var trailingSlash string
-			if !strings.HasSuffix(r.URL.Path, "/") {
-				trailingSlash = "/"
-			}
-
-			http.ServeFile(w, r, "."+r.URL.Path+trailingSlash+"build/index.html")
-		} else {
-			http.ServeFile(w, r, fmt.Sprintf("./projects/%s/build/%s", m[1], m[2]))
-		}
+		prefix := fmt.Sprintf("/%s/%s/", v["dev"], v["project"])
+		http.StripPrefix(prefix, http.FileServer(http.Dir("."+prefix+"build/"))).ServeHTTP(w, r)
 	})
 	r.Path("/sitemap.xml").HandlerFunc(serveFile)
 	r.Path("/LICENSE").HandlerFunc(serveFile)
