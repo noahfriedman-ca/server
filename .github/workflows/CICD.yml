@@ -14,7 +14,7 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     container: ghcr.io/noahfriedman-ca/cicd-deps
-    if: contains(github.ref, 'refs/tags') || (!contains(github.event.head_commit.message, '[skip ci]')
+    if: contains(github.ref, 'refs/tags') || !contains(github.event.head_commit.message, '[skip ci]')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
