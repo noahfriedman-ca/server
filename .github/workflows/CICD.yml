@@ -13,14 +13,10 @@ jobs:
   test:
     name: Run tests
     runs-on: ubuntu-latest
-    container: ghcr.io/noahfriedman-ca/cicd-deps
+    container: nginx/unit-1.22.0-go1.15
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.15
       - name: Retrieve cache
         uses: actions/cache@v2
         id: cache
@@ -37,15 +33,11 @@ jobs:
   build:
     name: Build executable
     runs-on: ubuntu-latest
-    container: ghcr.io/noahfriedman-ca/cicd-deps
+    container: nginx/unit-1.22.0-go1.15
     if: contains(github.ref, 'refs/tags')
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.15
       - name: Retrieve cache
         uses: actions/cache@v2
         id: cache
